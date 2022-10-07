@@ -1,0 +1,31 @@
+#count {
+    display: inline-block;
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding-right: 15px;
+}
+
+.hide {
+    display: none;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.start h1 {
+    text-align: center;
+}
+
+#startBtn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+}
+
+newBtn {
+
+}

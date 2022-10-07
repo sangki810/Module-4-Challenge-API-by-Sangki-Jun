@@ -1,45 +1,56 @@
 // variables to keep track of quiz state
-    // currentQuestion
-    // time
-    // timerId
+var currentQuestion = 0;
+var timeRemaining = 60;
+var quizTimer;
 
 // variables to reference DOM elements
 var questionsEl = document.getElementById('questions');
-
+var startBtnEl = document.getElementById('startBtn');
+var startMenuEl = document.getElementById("start-screen");
+var timerEl = document.getElementById('timer')
+var qTitleEL = document.getElementById('question-title')
+var choicesEl = document.getElementById('choices')
 
 /// FUNCTION TO START THE QUIZ
 function startQuiz() {
   // hide start screen 
-  
+  startMenuEl.classList.add('hide')
   // un-hide questions section
-
+  questionsEl.classList.remove('hide')
   // start timer
-
+  quizTimer = setInterval(clockTick, 1000)
   // show starting time
-
+  timerEl.textContent = timeRemaining;
   getQuestion();
 }
 
 /// FUNCTION TO GET/SHOW EACH QUESTION ///
 function getQuestion() {
   // get current question object from array
-
+  var thisQuestion = questions[currentQuestion]
   // update title with current question
-
+  qTitleEL.textContent = thisQuestion.title
   // clear out any old question choices
-
+  choicesEl.innerHTML = "";
   // loop over choices
+  for (i=0; i<thisQuestion.choices.length; i++) {
     // FOR {
       // create new button for each choice
-  
+      var newBtn = document.createElement("button");
+      newBtn.setAttribute("style", "display: flex; flex-direction: column")
+      newBtn.textContent = thisQuestion.choices[i];
+      newBtn.addEventListener('click', questionClick)
       // display on the page
-      
-    // } 
+      choicesEl.append(newBtn)
+      // } 
+  }
 }
 
 /// FUNCTION FOR CLICKING A QUESTION ///
 function questionClick(event) {
-
+  console.log('click has happened')
+  currentQuestion++;
+  getQuestion()
   // if the clicked element is not a choice button, do nothing.
   if (something) {
 
@@ -79,8 +90,13 @@ function quizEnd() {
 /// FUNCTION FOR UPDATING THE TIME ///
 function clockTick() {
   // update time
-
+  timeRemaining--;
+  timerEl.textContent = timeRemaining;
   // check if user ran out of time
+  if(timeRemaining <=0 ) {
+    alert('yo game is over')
+    clearInterval(quizTimer)
+  }
 }
 
 function saveHighscore() {
@@ -100,5 +116,5 @@ function saveHighscore() {
   // user clicks button to submit initials
 
   // user clicks button to start quiz
-
+startBtnEl.addEventListener("click", startQuiz)
   // user clicks on element containing choices
