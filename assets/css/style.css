@@ -1,13 +1,9 @@
 #count {
     display: inline-block;
-   position: absolute;
-   top: 0;
-   right: 0;
-   padding-right: 15px;
-}
-
-.hide {
-    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 15px;
 }
 
 .wrapper {
@@ -26,6 +22,6 @@
     justify-content: center;
 }
 
-newBtn {
-
+.hide {
+    display: none;
 }
